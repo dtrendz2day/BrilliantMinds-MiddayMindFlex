@@ -1,3 +1,4 @@
+
 const quizPool = [
   {
     category: "Celebrities",
@@ -14,8 +15,7 @@ const quizPool = [
     question: "What is the capital of France?",
     answer: "Paris"
   }
-  // Keep adding more questions below following same format
+  // Add more questions in same format
 ];
 
-// Make this available globally
 window.quizPool = quizPool;
