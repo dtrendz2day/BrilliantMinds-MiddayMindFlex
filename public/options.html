@@ -1,14 +1,39 @@
 
-    <html>
-    <head><title>Midday Mind Flex Options</title></head>
-    <body style="background:black;color:gold;font-family:sans-serif;">
-      <h1>🧠 Midday Mind Flex Options</h1>
-      <ul>
-        <li>Quiz Option 1: [Example Question]</li>
-        <li>Quiz Option 2: [Example Question]</li>
-        <li>Quiz Option 3: [Example Question]</li>
-      </ul>
-      <p>Select one to post and stay brilliant!</p>
-    </body>
-    </html>
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Midday Mind Flex - Pick Your 3 Quizzes</title>
+  <style>
+    body { background: #000; color: #fff; font-family: Arial, sans-serif; text-align: center; padding: 2rem; }
+    h1 { color: #FFCC00; }
+    select, button { padding: 0.5rem; margin: 1rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Midday Mind Flex Admin</h1>
+  <p>Here are 3 random quizzes for today's post:</p>
+
+  <div id="quizContainer">Loading quizzes...</div>
+
+  <button onclick="reloadQuizzes()">Show New Random Set</button>
+
+  <script>
+    async function loadQuizzes() {
+      const res = await fetch('quiz-database.csv');
+      const text = await res.text();
+      const lines = text.trim().split('\n').slice(1);
+      const randomThree = lines.sort(() => 0.5 - Math.random()).slice(0, 3);
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = randomThree.map((line, idx) => `<p><strong>Quiz ${idx + 1}:</strong> ${line.split(',')[1]}</p>`).join('');
+    }
+
+    function reloadQuizzes() {
+      loadQuizzes();
+    }
+
+    loadQuizzes();
+  </script>
+</body>
+</html>
