@@ -2,16 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>🧠 Midday Mind Flex</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>🧠 Midday Mind Flex</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>🧠 Midday Mind Flex</h1>
-    <div id="quiz-container"></div>
-    <button id="new-quiz">Show New Random Set</button>
+  <h1>🧠 Midday Mind Flex</h1>
+  <div id="quiz-container"></div>
+  <button id="new-quiz">Show New Random Set</button>
 
-    <!-- This connects your quiz logic -->
-    <script src="questions.js"></script>
+  <!-- Fix: Defer script until after page loads -->
+  <script src="questions.js" defer></script>
 </body>
 </html>
