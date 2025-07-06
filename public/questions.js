@@ -1,4 +1,4 @@
-const questions = [
+window.questions =  [
   { question: "What is the capital of France?", answer: "Paris" },
   { question: "Who painted the Mona Lisa?", answer: "Leonardo da Vinci" },
   { question: "Which planet is known as the Red Planet?", answer: "Mars" },
