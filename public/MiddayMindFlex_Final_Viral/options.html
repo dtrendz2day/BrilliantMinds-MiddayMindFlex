@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Midday Mind Flex Admin</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>🧠 Midday Mind Flex Admin</h1>
+<div id="quizContainer"></div>
+<button id="newSet">Show New Random Set</button>
+<script src="questions.js"></script>
+<script>
+const quizContainer = document.getElementById('quizContainer');
+const newSetBtn = document.getElementById('newSet');
+
+function showSet() {
+    quizContainer.innerHTML = questions.sort(() => 0.5 - Math.random()).slice(0,3)
+        .map(q => `<div class="quizBox"><b>${q.category}</b>: ${q.question}</div>`).join('');
+}
+newSetBtn.addEventListener('click', showSet);
+showSet();
+</script>
+</body>
+</html>
