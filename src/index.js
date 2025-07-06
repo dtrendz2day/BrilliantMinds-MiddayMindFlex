@@ -1,1 +1,0 @@
-console.log('Midday Mind Flex App Loaded');
