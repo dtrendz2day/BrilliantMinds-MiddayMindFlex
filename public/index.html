@@ -2,18 +2,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>🧠 Midday Mind Flex</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>🧠 Midday Mind Flex</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>🧠 Midday Mind Flex</h1>
-  
-  <div id="quiz-container"></div>
-  
-  <button id="new-quiz">Show New Random Set</button>
+    <h1>🧠 Midday Mind Flex</h1>
+    <div id="quiz-container"></div>
+    <button id="new-quiz">Show New Random Set</button>
 
-  <!-- Correct scripts placed in proper order -->
-  <script src="questions.js" defer></script>
+    <script src="questions.js" defer></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const quizContainer = document.getElementById('quiz-container');
+        const newQuizBtn = document.getElementById('new-quiz');
+
+        function showRandomQuiz() {
+            quizContainer.innerHTML = '';
+            const selected = [];
+            while (selected.length < 3) {
+                const q = window.questions[Math.floor(Math.random() * window.questions.length)];
+                if (!selected.includes(q)) selected.push(q);
+            }
+            selected.forEach(q => {
+                const div = document.createElement('div');
+                div.innerHTML = `<strong>${q.question}</strong><br><em>${q.answer}</em><br><br>`;
+                quizContainer.appendChild(div);
+            });
+        }
+
+        newQuizBtn.addEventListener('click', showRandomQuiz);
+        showRandomQuiz();
+    });
+    </script>
 </body>
 </html>
