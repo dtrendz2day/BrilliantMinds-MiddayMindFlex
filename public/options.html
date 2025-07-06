@@ -6,35 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Midday Mind Flex Admin</title>
   <style>
-    body {
-      background: black;
-      color: yellow;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-    }
-    #quiz-container {
-      margin: 30px auto;
-      padding: 20px;
-      background: #222;
-      border-radius: 8px;
-      max-width: 500px;
-    }
-    .question-box {
-      background: #333;
-      color: white;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 5px;
-    }
-    button {
-      background: yellow;
-      border: none;
-      padding: 10px 20px;
-      margin: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+    body { background: black; color: yellow; font-family: Arial, sans-serif; text-align: center; }
+    h1 { margin-top: 2rem; }
+    .question-card { background: #222; padding: 1rem; margin: 1rem auto; max-width: 500px; border-radius: 8px; }
+    button { padding: 0.5rem 1rem; background: yellow; color: black; border: none; cursor: pointer; margin-top: 1rem; }
   </style>
 </head>
 <body>
@@ -43,5 +18,27 @@
   <button id="new-quiz">Show New Random Set</button>
 
   <script src="questions.js"></script>
+  <script>
+    const quizContainer = document.getElementById('quiz-container');
+    const newQuizBtn = document.getElementById('new-quiz');
+
+    function showRandomQuiz() {
+      quizContainer.innerHTML = "";
+      const selected = [];
+      while (selected.length < 3) {
+        const q = questions[Math.floor(Math.random() * questions.length)];
+        if (!selected.includes(q)) selected.push(q);
+      }
+      selected.forEach(q => {
+        const div = document.createElement('div');
+        div.className = 'question-card';
+        div.innerHTML = `<strong>🔑 ${q.question}</strong><br><em>Answer: ${q.answer}</em>`;
+        quizContainer.appendChild(div);
+      });
+    }
+
+    newQuizBtn.addEventListener('click', showRandomQuiz);
+    showRandomQuiz();
+  </script>
 </body>
 </html>
