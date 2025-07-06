@@ -8,24 +8,29 @@
 <body>
     <h1>🧠 Midday Mind Flex Admin</h1>
     <div id="quiz-container"></div>
-    <button id="new-quiz">Show New Random Set</button>
+    <button id="new-quiz">Show All Questions</button>
 
     <script src="questions.js" defer></script>
     <script>
-        const quizContainer = document.getElementById('quiz-container');
-        const newQuizBtn = document.getElementById('new-quiz');
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizContainer = document.getElementById('quiz-container');
+            const newQuizBtn = document.getElementById('new-quiz');
 
-        function showAllQuestions() {
-            quizContainer.innerHTML = "";
-            questions.forEach((q, index) => {
-                const div = document.createElement('div');
-                div.innerHTML = `<strong>🗝️ ${q.question}</strong><br><em>Answer: ${q.answer}</em><br><br>`;
-                quizContainer.appendChild(div);
-            });
-        }
+            function showAllQuestions() {
+                quizContainer.innerHTML = "";
+                if (!window.questions || !Array.isArray(questions)) {
+                    quizContainer.innerHTML = "<em>No questions loaded. Check questions.js</em>";
+                    return;
+                }
+                questions.forEach((q, index) => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `<strong>${index + 1}. ${q.question}</strong><br><em>${q.answer}</em><br><br>`;
+                    quizContainer.appendChild(div);
+                });
+            }
 
-        newQuizBtn.addEventListener('click', showAllQuestions);
-        showAllQuestions();
+            newQuizBtn.addEventListener('click', showAllQuestions);
+        });
     </script>
 </body>
 </html>
