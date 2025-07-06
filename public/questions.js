@@ -15,7 +15,6 @@ const quizPool = [
     question: "What is the capital of France?",
     answer: "Paris"
   }
-  // Add more questions in same format
 ];
 
 window.quizPool = quizPool;
