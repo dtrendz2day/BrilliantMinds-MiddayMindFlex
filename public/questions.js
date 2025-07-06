@@ -23,3 +23,4 @@ function showRandomQuiz() {
 }
 
 newQuizBtn.addEventListener('click', showRandomQuiz);
+showRandomQuiz(); // Show first quiz set on page load
