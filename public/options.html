@@ -1,20 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>🧠 Midday Mind Flex Admin</title>
-  <style>
-    body { background: black; color: yellow; font-family: Arial; text-align: center; padding: 2rem; }
-    button { background: yellow; color: black; border: none; padding: 0.5rem 1rem; font-size: 1rem; margin-top: 1rem; cursor: pointer; }
-    .quiz { margin: 1rem 0; }
-  </style>
+    <meta charset="UTF-8">
+    <title>🧠 Midday Mind Flex Admin</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>🧠 Midday Mind Flex Admin</h1>
-  <div id="quiz-container"></div>
-  <button id="new-quiz">Show New Random Set</button>
+    <h1>🧠 Midday Mind Flex Admin</h1>
+    <div id="quiz-container"></div>
+    <button id="new-quiz">Show New Random Set</button>
 
-  <script src="questions.js"></script>
+    <script src="questions.js" defer></script>
+    <script>
+        const quizContainer = document.getElementById('quiz-container');
+        const newQuizBtn = document.getElementById('new-quiz');
+
+        function showAllQuestions() {
+            quizContainer.innerHTML = "";
+            questions.forEach((q, index) => {
+                const div = document.createElement('div');
+                div.innerHTML = `<strong>🗝️ ${q.question}</strong><br><em>Answer: ${q.answer}</em><br><br>`;
+                quizContainer.appendChild(div);
+            });
+        }
+
+        newQuizBtn.addEventListener('click', showAllQuestions);
+        showAllQuestions();
+    </script>
 </body>
 </html>
